@@ -5,52 +5,111 @@ import './quiz.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatefulWidget 
+{
   @override
-  State<StatefulWidget> createState() {
+  State<StatefulWidget> createState()
+  {
     return _MyAppState();
   }
 }
 
-class _MyAppState extends State<MyApp> {
-  final _Questions = const [
+class _MyAppState extends State<MyApp> 
+{
+  final _questions = const [
     {
-      'Questions': 'What is Flutter?',
+      'Questions': 'What is the National Animal of India?',
       'Options': [
-        {'text': 'Flutter is an open-source DBMS', 'score': 0},
-        {'text': 'Flutter is an open-source UI toolkit', 'score': 10},
-        {'text': 'Flutter is an open-source backend toolkit', 'score': 0},
-        {'text': 'All the above', 'score': 0}
+        {'text': 'Lion', 'score': 0},
+        {'text': 'Tiger', 'score': 10},
+        {'text': 'Giant Panda', 'score': 0},
+        {'text': 'Markhor', 'score': 0}
       ]
     },
     {
-      'Questions': 'What is Dart?',
+      'Questions': 'What is the National Flower of India?',
       'Options': [
-        {'text': 'Dart is a object-oriented programming language ', 'score': 0},
-        {
-          'text': 'Dart is used to create a frontend user interfaces',
-          'score': 0
-        },
-        {'text': 'Both A and B', 'score': 10},
-        {'text': 'None of the above', 'score': 0}
-      ]
-    },
-    {
-      'Questions':
-          'Which of the following takes more time to compile and update the app?',
-      'Options': [
-        {'text': 'Hot Reload', 'score': 0},
-        {'text': 'Hot Restart', 'score': 10},
-        {'text': 'Cold Reload', 'score': 0},
-        {'text': 'Depends on Computer'}
+        {'text': 'Plum Blossom ', 'score': 0},
+        {'text': 'Jasmine','score': 0},
+        {'text': 'Lotus', 'score': 10},
+        {'text': 'Rose', 'score': 0}
       ]
     },
     {
       'Questions':
-          'Without the main() function, we cannot write any program on Flutter',
+          'What is the National Tree of India?',
+      'Options': [
+        {'text': 'Oak Tree', 'score': 0},
+        {'text': 'Banayan Tree', 'score': 10},
+        {'text': 'Maple Tree', 'score': 0},
+        {'text': 'Mango', 'score':0}
+      ]
+    },
+    {
+      'Questions':
+          'The National Bird of India is Peacock?',
       'Options': [
         {'text': 'True', 'score': 10},
         {'text': 'False', 'score': 0},
       ]
     },
+    {
+      'Questions':
+          'The National Fruit of India is Pine Apple?',
+      'Options': [
+        {'text': 'True', 'score': 0},
+        {'text': 'False', 'score': 10},
+      ]
+    },
   ];
+
+  var _questionIndex = 0;
+  var _totalScore = 0;
+  
+  void _resetQuiz() 
+  {
+    setState(() 
+     {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
+  void _answerQuestion(int score)
+  {
+    _totalScore += score;
+
+    setState(()
+     {
+      _questionIndex = _questionIndex + 1;
+    });
+
+    print(_questionIndex);
+    if (_questionIndex < _questions.length) 
+    {
+      print('We have more questions');
+    }
+    else 
+    {
+      print('End of the quiz');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) 
+  {
+    return MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(
+              title: Text('Welcome to the Quiz', textAlign: TextAlign.center),
+            ),
+            body: (_questionIndex < _questions.length)
+                ? Quiz(
+                    answerQuestion: _answerQuestion,
+                    questionIndex: _questionIndex,
+                    questions: _questions,)
+                : Result(_totalScore, _resetQuiz),
+                ),
+                );
+  }
+}
