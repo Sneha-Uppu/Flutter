@@ -38,7 +38,7 @@ class Home extends StatelessWidget{
       ),
     floatingActionButton: FloatingActionButton(
       onPressed: () {},
-      child: Text('Like'),
+      child: Text('Submit'),
       backgroundColor: Colors.deepOrange[800],
     ),
   );
