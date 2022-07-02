@@ -21,24 +21,24 @@ class Home extends StatelessWidget{
       children: [
         Container(
           color: Color.fromARGB(255, 253, 85, 141),
-          padding: EdgeInsets.all(30.0),
+          padding: EdgeInsets.all(40.0),
           child: Text('Roll No'),
         ),
         Container(
           color: Colors.cyan,
-          padding: EdgeInsets.all(30.0),
+          padding: EdgeInsets.all(40.0),
           child: Text('Name'),
         ),
         Container(
           color: Color.fromARGB(255, 218, 96, 239),
-          padding: EdgeInsets.all(30.0),
+          padding: EdgeInsets.all(40.0),
           child: Text('Hobies'),
         )
       ],
       ),
     floatingActionButton: FloatingActionButton(
       onPressed: () {},
-      child: Text('Submit'),
+      child: Text('Like'),
       backgroundColor: Colors.deepOrange[800],
     ),
   );
